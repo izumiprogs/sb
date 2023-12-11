@@ -12,41 +12,59 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Timers;
 using System.Windows.Threading;
 
-namespace MarathonSkills
+namespace ProjectMarathon
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        TimeSpan d = new TimeSpan();
-        DateTime date = new DateTime(2024, 01, 01);
         public MainWindow()
         {
             InitializeComponent();
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Tick += new EventHandler(timer_Tick);
-            timer.Interval = new TimeSpan(0, 0, 1);
+            InitializeComponent();
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_Tick;
             timer.Start();
-
-            mainFrame.NavigationService.Navigate(new Uri("ChoicePage.xaml", UriKind.Relative));
-        }
-        private void timer_Tick(object sender, EventArgs e)
-        {
-            d = date - DateTime.Now;
-            txb_Time.Text = "До начала марафона осталось: " + d.Days + " д. " + d.Hours + " ч. " + d.Minutes + " мин. " + d.Seconds + " с. ";
         }
 
-        private void btn_back_Click_1(object sender, RoutedEventArgs e)
+        private DateTime eventTime = new DateTime(2023, 12, 31, 10, 0, 0);
+        private DispatcherTimer timer;
+      
+
+        private void Timer_Tick(object sender, EventArgs e)
         {
-            mainFrame.NavigationService.GoBack();
+            TimeSpan timeUntilEvent = eventTime - DateTime.Now;
+            lblTimeUntilEvent.Text = $"{timeUntilEvent.Days} дней {timeUntilEvent.Hours} часов и {timeUntilEvent.Minutes} минут до старта марафона!";
         }
 
-        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        private void RunnerButton_Click(object sender, RoutedEventArgs e)
         {
-            mainFrame.NavigationService.Navigate(new Uri("ChoicePage.xaml", UriKind.Relative));
+            Navigation.Navigate(new RunnerPage());
+        }
+
+        private void SponsorRunnerButton_Click(object sender, RoutedEventArgs e)
+        {
+            //Navigation.Navigate(new SponsorRunnerPage());
+        }
+
+        private void InfoButton_Click(object sender, RoutedEventArgs e)
+        {
+            //Navigation.Navigate(new InfoPage());
+        }
+
+        private void LoginPage_Click(object sender, RoutedEventArgs e)
+        {
+            Navigation.Navigate(new AuthorizationRunnerPage());
+        }
+
+        private void Navigation_Navigated(object sender, NavigationEventArgs e)
+        {
+
         }
     }
 }

@@ -1,0 +1,62 @@
+﻿<Page x:Class="ProjectMarathon.ConfirmNewRunnerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectMarathon"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ConfirmNewRunnerPage">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock
+            Foreground="#ffffff"
+            Background="#505050"/>
+        <TextBlock Text="MARATHON SKILLS 2024"
+                   Style="{StaticResource TitleText}"
+                   FontSize="24"
+                   Margin="-200, 10, 0, 0"/>
+        <TextBlock Grid.Row="1"
+                   Grid.RowSpan="2"
+                   Text="Спасибо за вашу регистрацию в качестве"
+                   Style="{StaticResource MainText}"
+                   Margin="0,30,0,0"/>
+        <TextBlock Text="бегуна!"
+                   Grid.Row="1"
+                   Grid.RowSpan="2"
+                   Style="{StaticResource MainText}"
+                   Margin="0,50,0,0"/>
+        <TextBlock Grid.Row="1"
+                   Grid.RowSpan="2"
+                   Text="Спасибо за вашу регистрацию в качестве бегуна в Marathon Skills 2016!"
+                   Style="{StaticResource MainText}"
+                   Margin="0,90"
+                   FontSize="14"/>
+        <TextBlock Text="С вами свяжутся по поводу оплаты."
+                   Grid.Row="1"
+                   Grid.RowSpan="2"
+                   Margin="0,110"
+                   FontSize="14"
+                   Style="{StaticResource MainText}"/>
+        <Button Content="ОК"
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Style="{StaticResource MainButton}"
+                Width="40"
+                FontSize="12"
+                Height="20"
+                Margin="0,-90,0,0"
+                Click="MenuRunnerButton"/>
+        <Button Style="{StaticResource SmallButton}"
+                Margin="600,0,0,0"
+                Content="Logout"
+                Click="Logout"/>
+        <Frame Name="NavigationPage" 
+               Grid.RowSpan="3"/>
+    </Grid>
+</Page>
